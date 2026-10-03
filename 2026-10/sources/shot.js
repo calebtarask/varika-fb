@@ -1,0 +1,2 @@
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1080}});
+for(const f of ['post1-presentation','post2-regle-or','post3-sondage']){await p.goto('file://'+__dirname+'/'+f+'.html');await p.waitForLoadState('networkidle');await p.evaluate(()=>document.fonts.ready);await p.screenshot({path:f+'.png'});}await b.close()})();
