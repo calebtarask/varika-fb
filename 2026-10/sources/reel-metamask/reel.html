@@ -1,0 +1,263 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../figtree.css">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;font-family:Figtree,sans-serif;color:#f3f3f5;overflow:hidden;position:relative;
+background:radial-gradient(820px 640px at 8% 12%, rgba(165,40,255,.55), transparent 70%),
+radial-gradient(780px 640px at 96% 90%, rgba(165,40,255,.40), transparent 70%),
+linear-gradient(160deg,#1c1b25 0%,#24262d 55%,#1e1a2a 100%)}
+body:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);background-size:28px 28px}
+.ring{position:absolute;border:2px solid rgba(165,40,255,.35);border-radius:50%}
+#logo{position:absolute;left:80px;top:150px;width:230px}
+#logo svg{width:100%;display:block}
+#hdr{position:absolute;left:80px;right:80px;top:250px}
+.label{font-weight:600;font-size:26px;letter-spacing:4px;color:#c9b8e8;text-transform:uppercase}
+h1{font-weight:700;font-size:80px;line-height:1.08;letter-spacing:-1px;margin-top:18px}
+h1 em,.hl{font-style:normal;color:#ba7aff}
+#phone{position:absolute;left:230px;top:540px;width:620px;height:820px;border-radius:56px;background:#101016;
+padding:10px;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.12)}
+#screen{position:relative;width:600px;height:800px;border-radius:46px;background:#fff;overflow:hidden;color:#24272a}
+#demo{position:absolute;top:1338px;left:50%;transform:translateX(-50%);padding:8px 22px;border-radius:999px;
+background:#2a2b33;border:1.5px solid rgba(255,255,255,.16);font-size:20px;font-weight:600;color:#979baa;white-space:nowrap}
+#cap{position:absolute;left:80px;right:80px;top:1410px;min-height:130px;display:flex;align-items:center;gap:26px;
+padding:24px 32px;border-radius:22px;background:rgba(42,43,51,.92);border:1.5px solid rgba(255,255,255,.12)}
+.pills{display:flex;flex-wrap:wrap;gap:18px;margin-top:56px}
+.pill{display:flex;align-items:center;gap:16px;padding:12px 28px 12px 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);font-weight:600;font-size:30px}
+.pi{width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}.pi svg{width:42px;height:42px}
+.ico{display:inline-block;width:44px;height:44px;vertical-align:-10px;margin:0 8px 0 10px;background:#fff;border-radius:50%;padding:4px}.ico svg{width:100%;height:100%;display:block}
+.dot{flex:none;width:64px;height:64px;border-radius:50%;background:#a528ff;display:flex;align-items:center;justify-content:center;
+font-weight:700;font-size:30px;color:#fff}
+#capt{font-size:34px;font-weight:600;line-height:1.3}
+#full{position:absolute;inset:0}
+/* --- écran d'app (style clair, générique) --- */
+#screen>*{position:absolute}
+.sb{left:0;right:0;top:0;height:54px;display:flex;justify-content:space-between;align-items:center;padding:0 40px;font-size:20px;font-weight:600;color:#24272a}
+.ttl{left:30px;right:30px;text-align:center;font-size:36px;font-weight:700}
+.sub{left:30px;right:30px;text-align:center;font-size:22px;color:#6e7480}
+.btn{left:40px;width:520px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700}
+.btn.p{background:#0376c9;color:#fff}.btn.p.dis{background:#b4c3d7}
+.btn.s{border:2.5px solid #0376c9;color:#0376c9;background:#fff}
+.btn.g{background:#01875f;color:#fff}
+.fld{height:60px;border:2px solid #d2d6dc;border-radius:12px;padding:0 18px;display:flex;align-items:center;font-size:24px;color:#24272a;background:#fff}
+.fld.f{border-color:#0376c9;box-shadow:0 0 0 4px rgba(3,118,201,.15)}
+.fld.ok{border-color:#28a05a}
+.caret{display:inline-block;width:2px;height:28px;background:#24272a;margin-left:2px}
+.flbl{font-size:20px;font-weight:700;color:#24272a}
+.chk{display:flex;gap:14px;align-items:flex-start;font-size:20px;color:#24272a;line-height:1.3}
+.box{flex:none;width:26px;height:26px;border-radius:6px;border:2.5px solid #0376c9;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700}
+.box.on{background:#0376c9}
+.tri{width:0;height:0;border-left:60px solid transparent;border-right:60px solid transparent;border-top:96px solid #f6851b}
+.chip{width:250px;height:52px;border-radius:12px;background:#f4f6fa;border:1.5px solid #d2d6dc;display:flex;align-items:center;gap:12px;padding:0 16px;font-size:22px}
+.chip b{font-weight:700}.chip span{color:#6e7480;width:34px}
+.warn{left:40px;right:40px;padding:14px 18px;border-radius:12px;background:#ffeeee;color:#d73737;font-size:20px;font-weight:700}
+.toast{left:120px;right:120px;padding:16px;border-radius:14px;background:#24272a;color:#fff;text-align:center;font-size:20px;font-weight:700}
+.tap{width:78px;height:78px;margin:-39px 0 0 -39px;border-radius:50%;background:rgba(165,40,255,.30);border:3px solid #a528ff}
+.ripple{border-radius:50%;border:4px solid #a528ff}
+/* --- scènes plein écran --- */
+.fc{position:absolute;left:80px;right:80px}
+.big{font-size:104px}
+.sub2{margin-top:34px;font-size:38px;color:#979baa;line-height:1.35}
+.card{display:flex;align-items:center;gap:26px;padding:26px 30px;border-radius:22px;background:#2a2b33;border:1.5px solid rgba(255,255,255,.12);
+font-size:34px;font-weight:600;line-height:1.3;margin-bottom:22px}
+.note{font-size:34px;font-weight:600;line-height:1.35;margin-top:30px}
+.soon{display:flex;align-items:center;gap:14px;justify-content:center;color:#98ffb5;font-weight:600;font-size:36px}
+.soon:before{content:"";width:16px;height:16px;border-radius:50%;background:#98ffb5}
+</style></head>
+<body>
+<div class="ring" style="width:760px;height:760px;right:-420px;top:-320px"></div>
+<div class="ring" style="width:600px;height:600px;left:-340px;bottom:-280px"></div>
+<div id="logo"></div>
+<div id="hdr"><div class="label" id="lbl"></div><h1 id="ttl"></h1></div>
+<div id="phone"><div id="screen"></div></div>
+<div id="demo">Démo · mots fictifs</div>
+<div id="cap"><span class="dot" id="capn"></span><span id="capt"></span></div>
+<div id="full"></div>
+<script>
+// ---- logo Varika (tracés repris de sources/gen.py) ----
+const A='M1102.5 202.4C1096 205.5 1094.9 206.7 1083.8 225L906.8 511.2C907.7 511.6 928.6 511.9 953.1 511.9H997.8L1113.4 327.3L1225.5 512H1268C1291.4 512 1312.9 511.7 1315.7 511.4L1321 510.7L1146.8 229.7C1133.8 208.6 1130.7 204.7 1124.6 201.9C1118.6 199.2 1108.9 199.4 1102.5 202.4Z';
+const T='M1114 378.6L1031.2 510.8C1034.3 511.4 1190.4 512 1191.9 511.1L1114 378.6Z';
+const R='M1346 203V512H1437V417H1492.7L1580.4 512H1687.8L1586.9 403.7L1598.2 400C1614.4 394.7 1619.4 392.5 1628.9 386.8C1652.8 372.3 1668.2 351.6 1673.6 326.6C1676 315.6 1675.8 294.6 1673.2 283.7C1668.7 265.4 1659.9 250 1646.7 237.3C1628.3 219.6 1607.6 210.1 1575.6 204.5C1568 203.2 1551.2 203 1456.4 203H1346ZM1437 270.6H1551.5L1557.9 273C1566.1 276.2 1572.7 282.1 1577.1 290.2C1580.4 296.3 1580.5 296.8 1580.5 307.5C1580.4 316.7 1580.1 319.3 1578.2 323.4C1574.9 330.6 1570.6 335.5 1564.1 339.4C1553.4 345.9 1552.7 346 1491.8 346H1437V270.6Z';
+const I='M410 203H502.3V512H410V203Z';
+const K='M1464 203H1556V330L1696 203H1826L1644 362L1834 512H1704L1576 405L1556 424V512H1464V203Z';
+const Wc='#f3f3f5',V='#a528ff';
+const LOGO=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 170 2480 380" fill="none">
+<g><path transform="matrix(1 0 0 -1 -829.8 715)" d="${A}" fill="${Wc}"/></g>
+<g transform="translate(-25 0)"><path transform="translate(-395.8 0)" d="${A}" fill="${V}"/><path transform="translate(-395.8 0)" d="${T}" fill="${Wc}"/></g>
+<g transform="translate(35 0)"><path transform="translate(-396.0 0)" d="${R}" fill="${Wc}"/></g>
+<g transform="translate(95 0)"><path transform="translate(922.0 0)" d="${I}" fill="${Wc}"/></g>
+<g transform="translate(155 0)"><path d="${K}" fill="${Wc}"/></g>
+<g transform="translate(215 0)"><path transform="translate(942.2 0)" d="${A}" fill="${Wc}"/><path transform="translate(942.2 0)" d="${T}" fill="${Wc}"/></g></svg>`;
+document.getElementById('logo').innerHTML=LOGO;
+
+// ---- helpers ----
+const ease=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
+const typed=(s,t0,t1,t)=>t<t0?'':s.slice(0,Math.floor(s.length*Math.min(1,(t-t0)/(t1-t0))));
+const at=(x,y,extra='')=>`style="left:${x}px;top:${y}px;${extra}"`;
+const sb=()=>`<div class="sb"><span>9:41</span><span>●●● 100%</span></div>`;
+const btn=(y,label,on=true,kind='p')=>`<div class="btn ${kind}${on?'':' dis'}" style="top:${y}px">${label}</div>`;
+const chk=(x,y,on,label)=>`<div class="chk" ${at(x,y,'width:520px')}><span class="box${on?' on':''}">${on?'✓':''}</span><span>${label}</span></div>`;
+const fld=(x,y,w,val,focus,label,secret,ok)=>(label?`<div class="flbl" ${at(x,y-32)}>${label}</div>`:'')+
+  `<div class="fld${focus?' f':''}${ok?' ok':''}" ${at(x,y,`width:${w}px`)}>${secret?'•'.repeat(val.length):val}${focus?'<i class="caret"></i>':''}</div>`;
+
+const WORDS=['soleil','rivière','crayon','montagne','lampe','jardin','nuage','violon','tortue','fenêtre','orange','biscuit'];
+const ADDR='0x71C7…3A9f';
+
+// ---- écrans ----
+function store(t){
+  const p=ease((t-1.3)/1.5), done=t>=2.9;
+  let h=sb()+`<div class="fld" ${at(30,70,'width:540px;border-radius:999px;background:#f1f3f4;border-color:#f1f3f4;color:#5f6368')}>Rechercher : metamask</div>
+  <div ${at(40,170,'width:110px;height:110px;border-radius:24px;background:#fff0e1;display:flex;align-items:center;justify-content:center')}><div class="tri" style="border-width:56px 34px 0 34px"></div></div>
+  <div ${at(170,175,'font-size:28px;font-weight:700')}>MetaMask</div>
+  <div ${at(170,215,'font-size:20px;color:#01875f;font-weight:600')}>Éditeur : MetaMask</div>
+  <div ${at(170,245,'font-size:18px;color:#6e7480')}>Portefeuille crypto · 4,7 ★</div>`;
+  if(t<1.3) h+=`<div class="btn g" style="top:300px">Installer</div>`;
+  else if(!done) h+=`<div ${at(40,320,'width:520px;height:10px;border-radius:5px;background:#e3e6ea')}></div><div ${at(40,320,`width:${520*p}px;height:10px;border-radius:5px;background:#01875f`)}></div><div ${at(40,342,'font-size:20px;color:#6e7480')}>Installation… ${Math.round(p*100)} %</div>`;
+  else h+=`<div class="btn g" style="top:300px">Ouvrir</div>`;
+  const warnOn=ease((t-2.0)/0.4);
+  h+=`<div ${at(30,430,'width:540px;height:2px;background:#eceef1')}></div>
+  <div ${at(40,470,'width:90px;height:90px;border-radius:20px;background:#f3f3f3;display:flex;align-items:center;justify-content:center;opacity:.6')}><div class="tri" style="border-width:46px 28px 0 28px;border-top-color:#e0a060"></div></div>
+  <div ${at(150,474,'font-size:24px;font-weight:700;opacity:.6')}>Meta Mask Wallet Pro</div>
+  <div ${at(150,508,'font-size:19px;color:#6e7480')}>Éditeur : WalletDev Tools</div>
+  <div ${at(150,544,`padding:6px 14px;border-radius:999px;background:#ffeeee;color:#d73737;font-size:18px;font-weight:700;opacity:${warnOn}`)}>⚠ Copie suspecte</div>`;
+  return h;
+}
+function welcome(t,tCheck){
+  const on=t>=tCheck;
+  return sb()+`<div class="ttl" style="top:90px">Bienvenue sur MetaMask</div><div class="sub" style="top:142px">Ton portefeuille pour le web3</div>
+  <div ${at(110,210,'width:380px;height:340px;border-radius:30px;background:#fff0e1;display:flex;align-items:center;justify-content:center')}><div class="tri"></div></div>`+
+  chk(40,592,on,"J'accepte les conditions d'utilisation")+btn(648,'Créer un nouveau portefeuille',on)+btn(726,'Importer un portefeuille existant',true,'s');
+}
+function password(t,s,title,note){
+  const p1=typed('x'.repeat(14),0.8*s,2.3*s,t), p2=typed('x'.repeat(14),2.9*s,4.4*s,t), c=t>=4.9*s;
+  let h=sb()+`<div class="ttl" style="top:80px">${title}</div><div class="sub" style="top:132px">${note}</div>`+
+  fld(40,220,520,p1,t>=0.6*s&&t<2.7*s,'Nouveau mot de passe',true)+
+  (p1.length>=10?`<div ${at(40,288,'font-size:19px;font-weight:700;color:#28a05a')}>Robustesse : forte</div>`:'')+
+  fld(40,370,520,p2,t>=2.7*s&&t<4.9*s,'Confirmer le mot de passe',true)+
+  (p2.length==14?`<div ${at(40,438,'font-size:19px;color:#28a05a;font-weight:600')}>✓ Les mots de passe correspondent</div>`:'')+
+  chk(40,500,c,'Je comprends que MetaMask ne peut pas récupérer ce mot de passe.')+
+  btn(706,'Continuer',c&&p2.length==14);
+  return h;
+}
+function grid(top,words,blur){
+  let h=`<div ${at(40,top,`width:520px;display:flex;flex-wrap:wrap;gap:12px 20px;${blur?'filter:blur(9px)':''}`)}>`;
+  words.forEach((w,i)=>h+=`<div class="chip" style="position:static"><span>${i+1}.</span><b>${w}</b></div>`);
+  return h+'</div>';
+}
+function phrase(t){
+  const rev=t>=1.5;
+  let h=sb()+`<div class="ttl" style="top:80px">Ta phrase secrète</div><div class="sub" style="top:132px">Note ces 12 mots sur papier, dans l'ordre</div>`+grid(185,WORDS,!rev);
+  if(!rev) h+=`<div ${at(140,320,'width:320px;padding:18px;border-radius:14px;background:#24272a;color:#fff;text-align:center;font-size:22px;font-weight:700')}>Toucher pour révéler</div>`;
+  h+=`<div class="warn" style="top:612px">Ne la partage avec personne !</div>`+btn(706,'Suivant',rev);
+  return h;
+}
+const VER=[[3,'crayon'],[7,'nuage'],[11,'orange']];
+function verify(t){
+  let h=sb()+`<div class="ttl" style="top:80px">Confirme ta phrase</div><div class="sub" style="top:132px">Saisis les mots demandés</div>`, n=0;
+  VER.forEach(([k,w],i)=>{const t0=0.6+1.7*i, v=typed(w,t0+0.2,t0+1.1,t), ok=v==w; if(ok)n++;
+    h+=fld(40,240+i*130,520,v,t>=t0&&t<t0+1.7&&!ok,`Mot n°${k}`,false,ok)+(ok?`<div ${at(510,252+i*130,'font-size:28px;color:#28a05a;font-weight:700')}>✓</div>`:'');});
+  return h+btn(706,'Confirmer',n==3);
+}
+function home(t,o){
+  if(o.congrats && t<o.congrats) return sb()+`<div ${at(240,190,'width:120px;height:120px;border-radius:50%;background:#28a05a;color:#fff;font-size:70px;font-weight:700;display:flex;align-items:center;justify-content:center')}>✓</div>
+    <div class="ttl" style="top:350px">Félicitations !</div><div class="sub" style="top:410px">Ton portefeuille est créé.</div>`+btn(706,'Terminé');
+  let h=sb()+`<div ${at(170,78,'width:260px;padding:10px;border-radius:999px;background:#f1f3f6;text-align:center;font-size:19px')}>● Ethereum Mainnet</div>
+  <div class="ttl" style="top:140px;font-size:26px">Compte 1</div>
+  <div ${at(170,188,`width:260px;padding:12px;border-radius:999px;background:${o.match&&t>=o.match?'#e6f6ec':'#eef5fc'};text-align:center;font-size:21px;font-weight:700;color:${o.match&&t>=o.match?'#28a05a':'#0376c9'};font-family:monospace`)}>${ADDR}</div>
+  <div class="ttl" style="top:258px;font-size:64px">0 ETH</div>`;
+  ['Acheter','Envoyer','Recevoir','Échanger'].forEach((l,i)=>h+=`<div ${at(52+i*130,370,'width:64px;height:64px;border-radius:50%;background:#0376c9;margin-left:12px')}></div><div ${at(32+i*130,446,'width:128px;text-align:center;font-size:18px')}>${l}</div>`);
+  h+=`<div ${at(0,500,'width:600px;height:2px;background:#eceef1')}></div><div ${at(40,524,'font-size:22px;font-weight:700;color:#0376c9')}>Jetons</div>
+  <div ${at(40,574,'font-size:22px')}>Ethereum</div><div ${at(470,574,'font-size:22px;color:#6e7480')}>0 ETH</div>`;
+  if(o.toast && t>=o.toast) h+=`<div class="toast" style="top:680px">Adresse copiée</div>`;
+  if(o.match && t>=o.match) h+=`<div ${at(110,640,`width:380px;padding:10px;border-radius:999px;background:#28a05a;color:#fff;text-align:center;font-size:20px;font-weight:700;opacity:${ease((t-o.match)/0.3)}`)}>✓ Même adresse qu'avant</div>`;
+  return h;
+}
+function importPhrase(t){
+  const cur=Math.floor((t-0.8)/0.5);
+  let h=sb()+`<div class="ttl" style="top:80px">Importer un portefeuille</div><div class="sub" style="top:132px">Saisis ta phrase de 12 mots</div>`;
+  WORDS.forEach((w,i)=>{const t0=0.8+0.5*i, v=typed(w,t0,t0+0.4,t);
+    h+=`<div class="fld${i==cur?' f':''}${v==w?' ok':''}" ${at(40+(i%2)*270,190+Math.floor(i/2)*72,'width:250px;height:56px;font-size:21px;padding:0 14px')}><span style="color:#6e7480;width:36px">${i+1}.</span>${v}${i==cur&&v!=w?'<i class="caret"></i>':''}</div>`;});
+  return h+btn(706,'Continuer',t>=6.8);
+}
+
+// ---- scènes ----
+// logos simplifiés dessinés à la main (Chrome / Firefox) + icône téléphone
+const CHROME=`<svg viewBox="0 0 48 48"><path d="M24 24L4.95 13A22 22 0 0 1 43.05 13Z" fill="#db4437"/><path d="M24 24L43.05 13A22 22 0 0 1 24 46Z" fill="#f4b400"/>
+<path d="M24 24L24 46A22 22 0 0 1 4.95 13Z" fill="#0f9d58"/><circle cx="24" cy="24" r="10.5" fill="#fff"/><circle cx="24" cy="24" r="8.2" fill="#1a73e8"/></svg>`;
+const FIREFOX=`<svg viewBox="0 0 48 48"><defs><linearGradient id="ffo" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#ffbd4f"/><stop offset=".55" stop-color="#ff7139"/><stop offset="1" stop-color="#e31587"/></linearGradient>
+<radialGradient id="ffp" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#9059ff"/><stop offset="1" stop-color="#3a1d9e"/></radialGradient></defs>
+<path d="M30 9L34 2L37 10Z" fill="url(#ffo)"/><path d="M36 11L42 6L41 15Z" fill="url(#ffo)"/>
+<circle cx="24" cy="25" r="21" fill="url(#ffo)"/><circle cx="27.5" cy="21.5" r="15" fill="url(#ffp)"/></svg>`;
+const PHONE=`<svg viewBox="0 0 48 48"><rect x="14" y="5" width="20" height="38" rx="4" fill="#a528ff"/><rect x="17" y="10" width="14" height="26" rx="1.5" fill="#fff"/><circle cx="24" cy="39.5" r="1.6" fill="#fff"/></svg>`;
+const pill=(ic,txt)=>`<div class="pill"><span class="pi">${ic}</span>${txt}</div>`;
+const CREA='Crée ton wallet<br><em>MetaMask</em>', RECUP='Tu changes de<br><em>téléphone</em> ?';
+const SCENES=[
+ {dur:4.5,kind:'full',full:t=>`<div class="fc" style="top:600px"><div class="label">Tuto crypto</div><h1 class="big">Crée ton wallet<br><em>MetaMask</em></h1>
+   <div class="sub2">En 6 étapes. Et comment le récupérer<br>si tu changes de téléphone.</div>
+   <div class="pills" style="opacity:${ease((t-1.0)/0.4)}">${pill(PHONE,'Android · iPhone')}${pill(CHROME,'Chrome')}${pill(FIREFOX,'Firefox')}</div></div>`},
+ {dur:8.5,label:'Tuto · étape 1/6',title:CREA,n:1,screen:store,taps:[[1.0,470,331],[3.9,300,331]],
+  caps:[[0,"Installe l'app officielle depuis Play Store ou App Store"],[2.2,'Vérifie l\'éditeur : « MetaMask ». Attention aux copies !'],
+   [5.4,`Sur ordinateur, en extension :<br><span class="ico" style="margin-left:0">${CHROME}</span>Chrome et<span class="ico">${FIREFOX}</span>Firefox`]]},
+ {dur:4.5,label:'Tuto · étape 2/6',title:CREA,n:2,screen:t=>welcome(t,1.1),taps:[[1.0,53,605],[2.7,300,679]],
+  caps:[[0,"Ouvre l'app et accepte les conditions"],[2.2,'Touche « Créer un nouveau portefeuille »']]},
+ {dur:7,label:'Tuto · étape 3/6',title:CREA,n:3,screen:t=>password(t,1,'Crée un mot de passe','Il protège l\'app sur ce téléphone'),
+  taps:[[0.6,300,250],[2.7,300,400],[4.9,53,513],[6.0,300,737]],
+  caps:[[0,'Choisis un mot de passe solide, puis confirme-le'],[4.6,'Il déverrouille l\'app sur CE téléphone seulement']]},
+ {dur:9,label:'Tuto · étape 4/6',title:CREA,n:4,screen:phrase,taps:[[1.4,300,345],[8.3,300,737]],
+  caps:[[0,'MetaMask te donne 12 mots : ta phrase de récupération'],[2.0,'Écris-les sur papier, dans l\'ordre'],[5.2,'Garde ce papier en lieu sûr : c\'est la clé de ton wallet']]},
+ {dur:6.8,label:'Tuto · étape 5/6',title:CREA,n:5,screen:verify,taps:[[0.6,300,270],[2.3,300,400],[4.0,300,530],[5.9,300,737]],
+  caps:[[0,'Prouve que tu as bien noté : saisis les mots demandés']]},
+ {dur:6,label:'Tuto · étape 6/6',title:CREA,n:6,screen:t=>home(t,{congrats:2.0,toast:3.9}),taps:[[1.5,300,737],[3.6,300,213]],
+  caps:[[0,'C\'est prêt ! Ton wallet est créé'],[2.2,'Ton adresse commence par 0x… Partage-la pour recevoir']]},
+ {dur:3.8,kind:'full',full:t=>`<div class="fc" style="top:660px"><div class="label">Et si…</div><h1 class="big">Tu changes de<br><em>téléphone</em> ?</h1>
+   <div class="sub2">Pas de panique : tes 12 mots suffisent<br>pour tout récupérer.</div></div>`},
+ {dur:4.5,label:'Récupération · étape 1/3',title:RECUP,n:1,screen:t=>welcome(t,0.9),taps:[[0.8,53,605],[2.5,300,757]],
+  caps:[[0,'Sur le nouveau téléphone, installe MetaMask'],[1.9,'Touche « Importer un portefeuille existant »']]},
+ {dur:8,label:'Récupération · étape 2/3',title:RECUP,n:2,screen:importPhrase,taps:[[0.5,165,218],[7.3,300,737]],
+  caps:[[0,'Saisis tes 12 mots, dans le bon ordre'],[5.2,'Vérifie bien chaque mot avant de continuer']]},
+ {dur:5.4,label:'Récupération · étape 3/3',title:RECUP,n:3,screen:t=>password(t,0.72,'Nouveau mot de passe','Pour déverrouiller l\'app sur ce téléphone'),
+  taps:[[0.43,300,250],[1.94,300,400],[3.53,53,513],[4.6,300,737]],
+  caps:[[0,'Crée un mot de passe (il peut être différent)']]},
+ {dur:5.5,label:'Récupération',title:RECUP,n:'✓',screen:t=>home(t,{match:1.0}),taps:[],
+  caps:[[0,'Ton wallet est de retour !'],[1.6,'Même adresse, mêmes fonds : tout tient dans tes 12 mots']]},
+ {dur:8.5,kind:'full',logo:true,full:t=>{
+   const it=[['1','Écris-les sur papier. Jamais en photo ni dans le cloud.'],['2','Ne les donne à personne, même au « support ».'],['3','Sans eux, personne ne peut récupérer ton wallet.']];
+   let h=`<div class="fc" style="top:250px"><div class="label">Sécurité</div><h1>Tes 12 mots,<br>c'est <em>ton argent</em></h1></div><div class="fc" style="top:600px">`;
+   it.forEach(([n,s],i)=>{const a=ease((t-0.8-i*1.5)/0.4); h+=`<div class="card" style="opacity:${a};transform:translateY(${20*(1-a)}px)"><span class="dot">${n}</span><span>${s}</span></div>`;});
+   const a=ease((t-5.4)/0.4);
+   return h+`<div class="note" style="opacity:${a}">Varika ne te demandera <span class="hl">jamais</span> ta phrase de récupération, ton mot de passe ou un code SMS.</div></div>`;}},
+ {dur:4.5,kind:'full',full:t=>`<div style="position:absolute;left:0;right:0;top:760px;text-align:center"><div style="width:560px;margin:0 auto">${LOGO}</div>
+   <div class="soon" style="margin-top:70px">Bientôt à Madagascar</div>
+   <div style="margin-top:34px;font-size:36px;line-height:1.4">Suis la Page pour apprendre<br>la crypto <span class="hl">simplement</span>.</div></div>`},
+];
+window.TOTAL=SCENES.reduce((s,x)=>s+x.dur,0);
+
+const $=id=>document.getElementById(id);
+const APP=['hdr','phone','demo','cap'];
+window.render=function(t){
+  let i=0,start=0; while(i<SCENES.length-1 && t>=start+SCENES[i].dur){start+=SCENES[i].dur;i++}
+  const sc=SCENES[i], lt=t-start, prev=SCENES[i-1]||{}, fin=ease(lt/0.35);
+  if(sc.kind==='full'){
+    APP.forEach(k=>$(k).style.display='none');
+    $('logo').style.display=(sc.logo||i===0)?'block':'none';
+    $('full').style.display='block'; $('full').style.opacity=fin; $('full').innerHTML=sc.full(lt);
+    return;
+  }
+  APP.forEach(k=>$(k).style.display=''); $('logo').style.display='block'; $('full').style.display='none';
+  $('lbl').textContent=sc.label; $('ttl').innerHTML=sc.title;
+  const newTitle=prev.title!==sc.title, a=newTitle?fin:1;
+  $('hdr').style.opacity=a; $('hdr').style.transform=`translateY(${24*(1-a)}px)`;
+  $('phone').style.opacity=prev.kind==='full'?fin:1;
+  let h=sc.screen(lt);
+  for(const [tt,x,y] of sc.taps){const d=lt-tt;
+    if(d>=-0.3&&d<0.5){const o=d<0?ease((d+0.3)/0.3):1-ease((d-0.2)/0.3);
+      h+=`<div class="tap" style="left:${x}px;top:${y}px;opacity:${o};transform:scale(${d>=0&&d<0.15?0.85:1})"></div>`;
+      if(d>=0){const r=30+70*d;h+=`<div class="ripple" style="left:${x-r}px;top:${y-r}px;width:${2*r}px;height:${2*r}px;opacity:${1-d/0.5}"></div>`;}}}
+  $('screen').innerHTML=h; $('screen').style.opacity=newTitle?1:ease(lt/0.25)*0.6+0.4;
+  let c=sc.caps[0],cs=0; for(const [ct,tx] of sc.caps) if(lt>=ct){c=[ct,tx];cs=ct}
+  $('capn').textContent=sc.n; $('capt').innerHTML=c[1];
+  const ca=ease((lt-cs)/0.3); $('cap').style.opacity=ca; $('cap').style.transform=`translateY(${16*(1-ca)}px)`;
+};
+render(0);
+</script>
+</body></html>
