@@ -194,7 +194,7 @@ const CREA='Crée ton wallet<br><em>MetaMask</em>', RECUP='Tu changes de<br><em>
 const SCENES=[
  {dur:4.5,kind:'full',full:t=>`<div class="fc" style="top:600px"><div class="label">Tuto crypto</div><h1 class="big">Crée ton wallet<br><em>MetaMask</em></h1>
    <div class="sub2">En 6 étapes. Et comment le récupérer<br>si tu changes de téléphone.</div>
-   <div class="pills" style="opacity:${ease((t-1.0)/0.4)}">${pill(PHONE,'Android · iPhone')}${pill(CHROME,'Chrome')}${pill(FIREFOX,'Firefox')}</div></div>`},
+   <div class="pills">${pill(PHONE,'Android · iPhone')}${pill(CHROME,'Chrome')}${pill(FIREFOX,'Firefox')}</div></div>`},
  {dur:8.5,label:'Tuto · étape 1/6',title:CREA,n:1,screen:store,taps:[[1.0,470,331],[3.9,300,331]],
   caps:[[0,"Installe l'app officielle depuis Play Store ou App Store"],[2.2,'Vérifie l\'éditeur : « MetaMask ». Attention aux copies !'],
    [5.4,`Sur ordinateur, en extension :<br><span class="ico" style="margin-left:0">${CHROME}</span>Chrome et<span class="ico">${FIREFOX}</span>Firefox`]]},
@@ -240,7 +240,8 @@ window.render=function(t){
   if(sc.kind==='full'){
     APP.forEach(k=>$(k).style.display='none');
     $('logo').style.display=(sc.logo||i===0)?'block':'none';
-    $('full').style.display='block'; $('full').style.opacity=fin; $('full').innerHTML=sc.full(lt);
+    $('full').style.display='block'; $('full').style.opacity=i===0?1:fin;  // l'intro est la miniature : visible dès la 1re image
+    $('full').innerHTML=sc.full(lt);
     return;
   }
   APP.forEach(k=>$(k).style.display=''); $('logo').style.display='block'; $('full').style.display='none';
