@@ -79,15 +79,15 @@ let MK=[], APPDUR=0;
 window.setup=function(markers){MK=markers.filter(m=>CAPS[m.name]);APPDUR=markers.find(m=>m.name==='end').t;window.TOTAL=INTRO+APPDUR+RULES+END;return window.TOTAL};
 
 const APPEL=['hdr','cap','phone','demo'];
-function full(html,lt,logo){APPEL.forEach(k=>$(k).style.display='none');$('logo').style.display=logo?'block':'none';
-  $('full').style.display='block';$('full').style.opacity=ease(lt/0.4);$('full').innerHTML=html;}
+function full(html,lt,logo,fade=true){APPEL.forEach(k=>$(k).style.display='none');$('logo').style.display=logo?'block':'none';
+  $('full').style.display='block';$('full').style.opacity=fade?ease(lt/0.4):1;$('full').innerHTML=html;}
 
 window.render=function(t){
   if(t<INTRO){
-    const a=ease((t-1.0)/0.4);
+    // Tout est visible dès la 1re image : c'est la miniature du Reel.
     full(`<div class="fc" style="top:620px"><div class="label">Tuto Varika</div><h1 class="big">MetaMask + Varika<br>en <em>1 minute</em></h1>
       <div class="sub2">Connecte ton wallet, échange sans gas<br>et place tes dollars.</div>
-      <div class="pills" style="opacity:${a}"><div class="pill"><span class="dot">1</span>Connexion</div><div class="pill"><span class="dot">2</span>Échange</div><div class="pill"><span class="dot">3</span>Earn</div></div></div>`,t,true);
+      <div class="pills"><div class="pill"><span class="dot">1</span>Connexion</div><div class="pill"><span class="dot">2</span>Échange</div><div class="pill"><span class="dot">3</span>Earn</div></div></div>`,t,true,false);
     return null;
   }
   const at=t-INTRO;
