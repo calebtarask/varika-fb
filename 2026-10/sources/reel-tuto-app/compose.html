@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../figtree.css">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:1080px;height:1920px;font-family:Figtree,sans-serif;color:#f3f3f5;overflow:hidden;position:relative;
+background:radial-gradient(820px 640px at 8% 12%, rgba(165,40,255,.55), transparent 70%),
+radial-gradient(780px 640px at 96% 90%, rgba(165,40,255,.40), transparent 70%),
+linear-gradient(160deg,#1c1b25 0%,#24262d 55%,#1e1a2a 100%)}
+body:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.5px,transparent 1.5px);background-size:28px 28px}
+.ring{position:absolute;border:2px solid rgba(165,40,255,.35);border-radius:50%}
+#logo{position:absolute;left:80px;top:110px;width:210px}
+#logo svg,.biglogo svg{width:100%;display:block}
+#hdr{position:absolute;left:80px;right:80px;top:190px}
+.label{font-weight:600;font-size:26px;letter-spacing:4px;color:#c9b8e8;text-transform:uppercase}
+h1{font-weight:700;font-size:74px;line-height:1.08;letter-spacing:-1px;margin-top:14px}
+h1 em,.hl{font-style:normal;color:#ba7aff}
+#cap{position:absolute;left:80px;right:80px;top:385px;min-height:112px;display:flex;align-items:center;gap:24px;
+padding:20px 28px;border-radius:22px;background:rgba(42,43,51,.92);border:1.5px solid rgba(255,255,255,.12)}
+.dot{flex:none;width:58px;height:58px;border-radius:50%;background:#a528ff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:#fff}
+#capt{font-size:32px;font-weight:600;line-height:1.28}
+#phone{position:absolute;left:285px;top:530px;width:510px;height:1080px;border-radius:58px;background:#101016;padding:10px;
+box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.12)}
+#screen{width:490px;height:1060px;border-radius:48px;overflow:hidden;background:#1c1b25}
+#screen img{width:100%;height:100%;display:block}
+#demo{position:absolute;top:1626px;left:50%;transform:translateX(-50%);padding:8px 22px;border-radius:999px;background:#2a2b33;
+border:1.5px solid rgba(255,255,255,.16);font-size:20px;font-weight:600;color:#979baa;white-space:nowrap}
+#full{position:absolute;inset:0}
+.fc{position:absolute;left:80px;right:80px}
+.big{font-size:100px}
+.sub2{margin-top:34px;font-size:38px;color:#979baa;line-height:1.35}
+.pills{display:flex;flex-wrap:wrap;gap:18px;margin-top:52px}
+.pill{display:flex;align-items:center;gap:14px;padding:12px 28px 12px 12px;border-radius:999px;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);font-weight:600;font-size:30px}
+.pill .dot{width:54px;height:54px;font-size:26px}
+.card{display:flex;align-items:center;gap:26px;padding:26px 30px;border-radius:22px;background:#2a2b33;border:1.5px solid rgba(255,255,255,.12);
+font-size:34px;font-weight:600;line-height:1.3;margin-bottom:22px}
+.soon{display:flex;align-items:center;gap:14px;justify-content:center;color:#98ffb5;font-weight:600;font-size:36px}
+.soon:before{content:"";width:16px;height:16px;border-radius:50%;background:#98ffb5}
+</style></head>
+<body>
+<div class="ring" style="width:760px;height:760px;right:-420px;top:-320px"></div>
+<div class="ring" style="width:600px;height:600px;left:-340px;bottom:-280px"></div>
+<div id="logo"></div>
+<div id="hdr"><div class="label" id="lbl"></div><h1 id="ttl"></h1></div>
+<div id="cap"><span class="dot" id="capn"></span><span id="capt"></span></div>
+<div id="phone"><div id="screen"><img id="app"></div></div>
+<div id="demo">Démo · soldes fictifs, aucune vraie transaction</div>
+<div id="full"></div>
+<script>
+// Logo Varika (tracés repris de 2026-10/sources/gen.py)
+const A='M1102.5 202.4C1096 205.5 1094.9 206.7 1083.8 225L906.8 511.2C907.7 511.6 928.6 511.9 953.1 511.9H997.8L1113.4 327.3L1225.5 512H1268C1291.4 512 1312.9 511.7 1315.7 511.4L1321 510.7L1146.8 229.7C1133.8 208.6 1130.7 204.7 1124.6 201.9C1118.6 199.2 1108.9 199.4 1102.5 202.4Z';
+const T='M1114 378.6L1031.2 510.8C1034.3 511.4 1190.4 512 1191.9 511.1L1114 378.6Z';
+const R='M1346 203V512H1437V417H1492.7L1580.4 512H1687.8L1586.9 403.7L1598.2 400C1614.4 394.7 1619.4 392.5 1628.9 386.8C1652.8 372.3 1668.2 351.6 1673.6 326.6C1676 315.6 1675.8 294.6 1673.2 283.7C1668.7 265.4 1659.9 250 1646.7 237.3C1628.3 219.6 1607.6 210.1 1575.6 204.5C1568 203.2 1551.2 203 1456.4 203H1346ZM1437 270.6H1551.5L1557.9 273C1566.1 276.2 1572.7 282.1 1577.1 290.2C1580.4 296.3 1580.5 296.8 1580.5 307.5C1580.4 316.7 1580.1 319.3 1578.2 323.4C1574.9 330.6 1570.6 335.5 1564.1 339.4C1553.4 345.9 1552.7 346 1491.8 346H1437V270.6Z';
+const I='M410 203H502.3V512H410V203Z';
+const K='M1464 203H1556V330L1696 203H1826L1644 362L1834 512H1704L1576 405L1556 424V512H1464V203Z';
+const Wc='#f3f3f5',V='#a528ff';
+const LOGO=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 170 2480 380" fill="none">
+<g><path transform="matrix(1 0 0 -1 -829.8 715)" d="${A}" fill="${Wc}"/></g>
+<g transform="translate(-25 0)"><path transform="translate(-395.8 0)" d="${A}" fill="${V}"/><path transform="translate(-395.8 0)" d="${T}" fill="${Wc}"/></g>
+<g transform="translate(35 0)"><path transform="translate(-396.0 0)" d="${R}" fill="${Wc}"/></g>
+<g transform="translate(95 0)"><path transform="translate(922.0 0)" d="${I}" fill="${Wc}"/></g>
+<g transform="translate(155 0)"><path d="${K}" fill="${Wc}"/></g>
+<g transform="translate(215 0)"><path transform="translate(942.2 0)" d="${A}" fill="${Wc}"/><path transform="translate(942.2 0)" d="${T}" fill="${Wc}"/></g></svg>`;
+document.getElementById('logo').innerHTML=LOGO;
+const ease=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
+const $=id=>document.getElementById(id);
+
+const SECTIONS={c:['Étape 1/3 · Connexion','Connecte ton <em>MetaMask</em>'],s:['Étape 2/3 · Échange','Échange <em>sans gas</em>'],e:['Étape 3/3 · Earn','Place tes <em>dollars</em>']};
+const CAPS={
+ c1:"Ouvre Varika et touche l'icône de connexion",c2:'Choisis MetaMask',c3:'Valide la connexion dans MetaMask',c4:"Connecté ! Ton solde s'affiche",
+ s1:'Saisis le montant : 50 USDT vers USDC',s2:"Le prix exact s'affiche, sans frais de gas",s3:'Touche « Signer et échanger »',
+ s4:'Signe dans MetaMask : une signature, pas de transaction',s5:'Échange terminé en quelques secondes',
+ e1:'Va dans Earn et choisis le vault Gauntlet USDC',e2:'Lis les risques, puis coche « J\'ai compris »',e3:'Choisis combien placer : 100 USDT',
+ e4:'Signe dans MetaMask',e5:"C'est placé : les intérêts courent déjà",e6:'Suis ton épargne en direct',
+};
+
+const INTRO=3.5, RULES=8, END=4.5;
+let MK=[], APPDUR=0;
+window.setup=function(markers){MK=markers.filter(m=>CAPS[m.name]);APPDUR=markers.find(m=>m.name==='end').t;window.TOTAL=INTRO+APPDUR+RULES+END;return window.TOTAL};
+
+const APPEL=['hdr','cap','phone','demo'];
+function full(html,lt,logo){APPEL.forEach(k=>$(k).style.display='none');$('logo').style.display=logo?'block':'none';
+  $('full').style.display='block';$('full').style.opacity=ease(lt/0.4);$('full').innerHTML=html;}
+
+window.render=function(t){
+  if(t<INTRO){
+    const a=ease((t-1.0)/0.4);
+    full(`<div class="fc" style="top:620px"><div class="label">Tuto Varika</div><h1 class="big">MetaMask + Varika<br>en <em>1 minute</em></h1>
+      <div class="sub2">Connecte ton wallet, échange sans gas<br>et place tes dollars.</div>
+      <div class="pills" style="opacity:${a}"><div class="pill"><span class="dot">1</span>Connexion</div><div class="pill"><span class="dot">2</span>Échange</div><div class="pill"><span class="dot">3</span>Earn</div></div></div>`,t,true);
+    return null;
+  }
+  const at=t-INTRO;
+  if(at<APPDUR){
+    APPEL.forEach(k=>$(k).style.display='');$('logo').style.display='block';$('full').style.display='none';
+    let i=0; while(i<MK.length-1&&at>=MK[i+1].t)i++;
+    const m=MK[i], sec=m.name[0], secStart=MK.find(x=>x.name[0]===sec).t;
+    $('lbl').textContent=SECTIONS[sec][0];$('ttl').innerHTML=SECTIONS[sec][1];
+    const ha=ease((at-secStart)/0.4);$('hdr').style.opacity=ha;$('hdr').style.transform=`translateY(${20*(1-ha)}px)`;
+    $('capn').textContent=+m.name.slice(1);$('capt').textContent=CAPS[m.name];
+    const ca=ease((at-m.t)/0.3);$('cap').style.opacity=ca;$('cap').style.transform=`translateY(${14*(1-ca)}px)`;
+    $('phone').style.opacity=ease(at/0.4);
+    return at;  // instant à afficher dans l'enregistrement
+  }
+  const rt=at-APPDUR;
+  if(rt<RULES){
+    const it=[['1','Chaque action demande ta signature dans MetaMask.'],['2','Rendement variable : ni Varika ni NEAR Intents ne garantissent le capital.'],['3','Varika ne te demandera jamais ta phrase de récupération.']];
+    let h=`<div class="fc" style="top:250px"><div class="label">Sécurité</div><h1>Tu gardes<br>le <em>contrôle</em></h1></div><div class="fc" style="top:600px">`;
+    it.forEach(([n,s],i)=>{const a=ease((rt-0.7-i*1.6)/0.4);h+=`<div class="card" style="opacity:${a};transform:translateY(${20*(1-a)}px)"><span class="dot">${n}</span><span>${s}</span></div>`});
+    full(h+'</div>',rt,true); return null;
+  }
+  const et=rt-RULES, a=1-ease((et-3.6)/0.9);
+  full(`<div style="position:absolute;left:0;right:0;top:760px;text-align:center;opacity:${a}"><div class="biglogo" style="width:560px;margin:0 auto">${LOGO}</div>
+    <div class="soon" style="margin-top:70px">Bientôt à Madagascar</div>
+    <div style="margin-top:34px;font-size:36px;line-height:1.4">Suis la Page pour ne rien <span class="hl">manquer</span>.</div></div>`,et,false);
+  return null;
+};
+</script>
+</body></html>
